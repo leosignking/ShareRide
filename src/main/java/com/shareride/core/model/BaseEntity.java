@@ -32,7 +32,7 @@ public class BaseEntity implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    @Id 
+    @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
@@ -43,19 +43,22 @@ public class BaseEntity implements Serializable {
     @Column(nullable = true)
     private Date ts_updated;
 
-	@Version
-	@Column(name = "version")
-	public int version;
+    @Column(name = "is_active", columnDefinition = "tinyint(1) default 1", nullable = false)
+    private short isActive = 1;
+
+    @Version
+    @Column(name = "version")
+    public int version;
 
     public int getVersion() {
-		return version;
-	}
+        return version;
+    }
 
-	public void setVersion(int version) {
-		this.version = version;
-	}
+    public void setVersion(int version) {
+        this.version = version;
+    }
 
-	public long getId() {
+    public long getId() {
         return id;
     }
 
@@ -79,6 +82,22 @@ public class BaseEntity implements Serializable {
         this.ts_updated = ts_updated;
     }
 
+    public short getIsActive() {
+        return isActive;
+    }
+
+    public void setIsActive(short isActive) {
+        this.isActive = isActive;
+    }
+
+    public void setIsActive(boolean isActive) {
+        if (isActive) {
+            setIsActive((short) 1);
+        } else {
+            setIsActive((short) 0);
+        }
+    }
+
     @PrePersist
     public void setDefaultFields() {
         Date date = getCurrentDate();
@@ -88,15 +107,15 @@ public class BaseEntity implements Serializable {
 
     @PreUpdate
     public void setUpdatedDate() {
-    	ts_updated = getCurrentDate();
+        ts_updated = getCurrentDate();
     }
 
     @Override
     public int hashCode() {
         final int prime = 31;
         int result = 1;
-        result = prime * result +  ((int)id ^ ((int)id >>> 32));
-        result = prime * result ;
+        result = prime * result + ((int) id ^ ((int) id >>> 32));
+        result = prime * result + ((isActive == 1) ? 1231 : 1237);
         return result;
     }
 
@@ -107,7 +126,12 @@ public class BaseEntity implements Serializable {
         if (!(obj instanceof BaseEntity)) return false;
         BaseEntity other = (BaseEntity) obj;
         if (id != other.id) return false;
+        if (isActive != other.isActive) return false;
         return true;
+    }
+
+    public boolean isActive() {
+        return isActive == 0 ? false : true;
     }
 
     @Override
@@ -115,6 +139,7 @@ public class BaseEntity implements Serializable {
         final StringBuilder sb = new StringBuilder();
         sb.append("BaseEntity");
         sb.append("{ id=").append(id);
+        sb.append(", isActive=").append(isActive);
         sb.append(" }\n");
         return sb.toString();
     }
