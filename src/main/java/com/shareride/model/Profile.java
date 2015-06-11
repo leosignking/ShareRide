@@ -1,4 +1,4 @@
-package com.shareride.profile.model;
+package com.shareride.model;
 
 import com.shareride.core.model.BaseEntity;
 

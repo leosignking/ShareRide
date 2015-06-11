@@ -1,4 +1,4 @@
-package com.shareride.profile.controller;
+package com.shareride.controller;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;

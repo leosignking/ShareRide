@@ -1,4 +1,4 @@
-package com.shareride.profile.beans;
+package com.shareride.beans;
 
 /**
  * @author reddy

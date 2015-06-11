@@ -1,9 +1,10 @@
-package com.shareride.profile.service;
+package com.shareride.service;
 
-import com.shareride.profile.beans.UserBean;
-import com.shareride.profile.dao.UserDao;
-import com.shareride.profile.model.Account;
-import com.shareride.profile.model.Profile;
+import com.shareride.beans.UserBean;
+import com.shareride.dao.UserDao;
+import com.shareride.model.Account;
+import com.shareride.model.Profile;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

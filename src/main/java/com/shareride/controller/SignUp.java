@@ -1,7 +1,8 @@
-package com.shareride.profile.controller;
+package com.shareride.controller;
 
-import com.shareride.profile.beans.UserBean;
-import com.shareride.profile.service.UserService;
+import com.shareride.beans.UserBean;
+import com.shareride.service.UserService;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

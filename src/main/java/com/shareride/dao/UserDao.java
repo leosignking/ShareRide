@@ -1,8 +1,9 @@
-package com.shareride.profile.dao;
+package com.shareride.dao;
 
 import com.shareride.core.dao.BaseDao;
-import com.shareride.profile.model.Account;
-import com.shareride.profile.model.Profile;
+import com.shareride.model.Account;
+import com.shareride.model.Profile;
+
 import org.springframework.stereotype.Repository;
 
 /**
