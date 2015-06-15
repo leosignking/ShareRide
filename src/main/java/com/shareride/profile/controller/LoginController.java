@@ -30,5 +30,4 @@ public class LoginController {
         model.setViewName(signupViewName);
         return model;
     }
-
 }
