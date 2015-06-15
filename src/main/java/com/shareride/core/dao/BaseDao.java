@@ -3,13 +3,6 @@
  */
 package com.shareride.core.dao;
 
-import java.util.Collection;
-import java.util.Iterator;
-import java.util.List;
-
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-
 import com.shareride.core.model.BaseEntity;
 import org.hibernate.Session;
 import org.slf4j.Logger;
@@ -17,12 +10,16 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import java.util.Collection;
+import java.util.List;
+
 /**
  * @author sridhar.reddy
- *
  */
 @Repository("baseDao")
-@Transactional(readOnly=true)
+@Transactional(readOnly = true)
 public class BaseDao {
 
     private static final Logger log = LoggerFactory.getLogger(BaseDao.class);
@@ -36,30 +33,29 @@ public class BaseDao {
         return entityManager;
     }
 
-    public EntityManager getEntityManagerForActiveEntities() {
+    EntityManager getEntityManagerForActiveEntities() {
         Session session = getSession();
         session.enableFilter("isActive").setParameter("isActive", (short) 1);
         return entityManager;
     }
 
-    public EntityManager getEntityManagerWithoutFilter() {
+    EntityManager getEntityManagerWithoutFilter() {
         Session session = getSession();
         session.disableFilter("isActive");
         return entityManager;
     }
 
     private Session getSession() {
-        Session session = entityManager.unwrap(Session.class);
-        return session;
+        return entityManager.unwrap(Session.class);
     }
 
-    public void create(BaseEntity entity) {
+    protected void create(BaseEntity entity) {
         getEntityManagerForActiveEntities().persist(entity);
     }
 
-    public void createAll(final Collection entities){
-        for (Iterator it = entities.iterator(); it.hasNext();) {
-            create((BaseEntity) it.next());
+    public void createAll(final Collection entities) {
+        for (Object entity : entities) {
+            create((BaseEntity) entity);
         }
     }
 
@@ -74,11 +70,11 @@ public class BaseDao {
         return find(entityClass, primaryKey, true);
     }
 
-    public <T> T find(Class<T> entityClass, long primaryKey, boolean forActiveEntities) {
+    <T> T find(Class<T> entityClass, long primaryKey, boolean forActiveEntities) {
         log.trace("BaseDao.find for Entity {} primaryKey {} forActive {}", entityClass, primaryKey, forActiveEntities);
         T result = getEntityManagerForActiveEntities().find(entityClass, primaryKey);
         if (result == null) {
-            return result;
+            return null;
         }
         BaseEntity baseEntity = (BaseEntity) result;
         log.trace("BaseDao.find result={}", baseEntity);
@@ -102,17 +98,17 @@ public class BaseDao {
         return getEntityManagerForActiveEntities().find(entityClass, primaryKey);
     }
 
-    public <T> T update(T entity) {
+    protected <T> T update(T entity) {
         return getEntityManagerForActiveEntities().merge(entity);
     }
 
-    public void remove(BaseEntity entity) {
+    void remove(BaseEntity entity) {
         getEntityManagerWithoutFilter().remove(entity);
     }
 
-    public void removeAll(final Collection entities){
-        for (Iterator iterator = entities.iterator(); iterator.hasNext();) {
-            remove((BaseEntity) iterator.next());
+    public void removeAll(final Collection entities) {
+        for (Object entity : entities) {
+            remove((BaseEntity) entity);
         }
     }
 

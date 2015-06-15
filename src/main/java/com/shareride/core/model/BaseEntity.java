@@ -1,54 +1,40 @@
 /**
- * 
+ *
  */
 package com.shareride.core.model;
-
-import java.io.Serializable;
-import java.util.Calendar;
-import java.util.Date;
-
-import javax.persistence.Column;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.MappedSuperclass;
-import javax.persistence.PrePersist;
-import javax.persistence.PreUpdate;
-import javax.persistence.Version;
 
 import org.hibernate.annotations.Filter;
 import org.hibernate.annotations.FilterDef;
 import org.hibernate.annotations.Filters;
 import org.hibernate.annotations.ParamDef;
 
+import javax.persistence.*;
+import java.io.Serializable;
+import java.util.Calendar;
+import java.util.Date;
+
 /**
  * @author sridhar.reddy
- *
  */
 @MappedSuperclass
 @FilterDef(name = "isActive", parameters = @ParamDef(name = "isActive", type = "short"))
-@Filters({ @Filter(name = "isActive", condition = ":isActive = is_active") })
+@Filters({@Filter(name = "isActive", condition = ":isActive = is_active")})
 public class BaseEntity implements Serializable {
 
     private static final long serialVersionUID = 1L;
-
+    @Version
+    @Column(name = "version")
+    private int version;
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
-
     @Column(nullable = false)
     private Date ts_created = new Date();
-
     @Column(nullable = true)
     private Date ts_updated;
-
     @Column(name = "is_active", columnDefinition = "tinyint(1) default 1", nullable = false)
     private short isActive = 1;
-
-    @Version
-    @Column(name = "version")
-    public int version;
 
     public int getVersion() {
         return version;
@@ -86,16 +72,16 @@ public class BaseEntity implements Serializable {
         return isActive;
     }
 
-    public void setIsActive(short isActive) {
-        this.isActive = isActive;
-    }
-
     public void setIsActive(boolean isActive) {
         if (isActive) {
             setIsActive((short) 1);
         } else {
             setIsActive((short) 0);
         }
+    }
+
+    void setIsActive(short isActive) {
+        this.isActive = isActive;
     }
 
     @PrePersist
@@ -114,7 +100,7 @@ public class BaseEntity implements Serializable {
     public int hashCode() {
         final int prime = 31;
         int result = 1;
-        result = prime * result + ((int) id ^ ((int) id >>> 32));
+        result = prime * result + ((int) id ^ ((int) id >>> 31));
         result = prime * result + ((isActive == 1) ? 1231 : 1237);
         return result;
     }
@@ -126,22 +112,16 @@ public class BaseEntity implements Serializable {
         if (!(obj instanceof BaseEntity)) return false;
         BaseEntity other = (BaseEntity) obj;
         if (id != other.id) return false;
-        if (isActive != other.isActive) return false;
-        return true;
+        return isActive == other.isActive;
     }
 
     public boolean isActive() {
-        return isActive == 0 ? false : true;
+        return isActive != 0;
     }
 
     @Override
     public String toString() {
-        final StringBuilder sb = new StringBuilder();
-        sb.append("BaseEntity");
-        sb.append("{ id=").append(id);
-        sb.append(", isActive=").append(isActive);
-        sb.append(" }\n");
-        return sb.toString();
+        return "BaseEntity" + "{ id=" + id + ", isActive=" + isActive + " }\n";
     }
 
     private Date getCurrentDate() {
