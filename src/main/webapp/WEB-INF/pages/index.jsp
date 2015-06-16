@@ -11,6 +11,7 @@
     <link href="<c:url value="/resources/css/bootstrap.css" />" rel="stylesheet">
     <link href="<c:url value="/resources/css/font-awesome.min.css" />" rel="stylesheet">
     <script src="<c:url value="/resources/js/bootstrap.min.js" />"></script>
+    <script src="<c:url value="/resources/js/index.js" />"></script>
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
     <title>ShareRide</title>
 </head>
@@ -71,15 +72,17 @@
                 <div class="panel-body">
                     <div class="row">
                         <div class="col-lg-8 col-lg-push-2">
-                            <form id="login-form" action="/login" method="post" role="form" style="display: block;">
+                            <form:form id="login-form" action="/ShareRide/login" method="post" modelAttribute="userBean" role="form"  style="display: block;">
                                 <div class="form-group">
-                                    <input type="text" name="username" id="username" tabindex="1" class="form-control"
-                                           placeholder="Username" value="">
+                                <form:label path="email" ></form:label>
+                                <form:input  path="email" name="email" id="email" tabindex="1" 
+                                           placeholder="Username/Email" class="form-control" />
                                 </div>
                                 <div class="form-group">
-                                    <input type="password" name="password" id="password" tabindex="2"
-                                           class="form-control" placeholder="Password">
-                                </div>
+                                <form:label path="password" ></form:label>
+                                <form:password path="password" name="password" id="password" tabindex="2" 
+                                           placeholder="password" class="form-control" />
+                                </div> 
                                 <div class="form-group">
                                     <label for="remember">
                                         <input type="checkbox" tabindex="3" class="" name="remember" id="remember">
@@ -99,14 +102,14 @@
                                 </div>
                                 <hr>
                                 <div class="text-center">
-                                    <a class="btn">
+                                    <a class="btn" href="javascript:popup_getFacebookConnection()">
                                         <i class="fa fa-facebook-square fa-3x"></i>
                                     </a>
-                                    <a class="btn">
+                                    <a class="btn" href="javascript:popup_get_Google_Plus_Connection()">
                                         <i class="fa fa-google-plus-square fa-3x"></i>
                                     </a>
                                 </div>
-                            </form>
+                            </form:form>
                         </div>
                         <div class="col-lg-10 col-lg-push-1">
                             <form id="register-form" action="/sigup" method="post" role="form" style="display: none;">
@@ -155,10 +158,10 @@
                                 </div>
                                 <hr>
                                 <div class="text-center">
-                                    <a class="btn" href="/facebook">
+                                    <a class="btn" href="javascript:popup_getFacebookConnection()">
                                         <i class="fa fa-facebook-square fa-3x"></i>
                                     </a>
-                                    <a class="btn" href="/googleplus">
+                                    <a class="btn" href="javascript:popup_get_Google_Plus_Connection()">
                                         <i class="fa fa-google-plus-square fa-3x"></i>
                                     </a>
                                 </div>
