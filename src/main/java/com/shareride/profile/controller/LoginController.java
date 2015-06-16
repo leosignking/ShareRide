@@ -25,7 +25,6 @@ public class LoginController {
 
     @RequestMapping(value = "/signup.htm", method = RequestMethod.GET)
     public ModelAndView signupPage(ModelAndView model) {
-
         logger.info("Index Controller is called");
         model.setViewName(signupViewName);
         return model;

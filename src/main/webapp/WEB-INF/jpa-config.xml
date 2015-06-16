@@ -13,7 +13,7 @@
         <!--No need of persistence.xml -->
         <property name="packagesToScan">
             <array>
-                <value>com.shareride.model</value>
+                <value>com.shareride.profile.model</value>
             </array>
         </property>
         <property name="jpaVendorAdapter">
