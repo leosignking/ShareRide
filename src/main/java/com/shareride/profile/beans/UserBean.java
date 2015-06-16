@@ -1,10 +1,12 @@
 package com.shareride.profile.beans;
 
+import java.io.Serializable;
+
 /**
  * @author reddy
  * @created-on 6/10/15.
  */
-public class UserBean {
+public class UserBean implements Serializable{
 
     private String email;
     private String password;
