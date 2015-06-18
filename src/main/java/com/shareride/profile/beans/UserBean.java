@@ -12,9 +12,17 @@ public class UserBean implements Serializable{
     private String password;
     private String firstName;
     private String lastName;
-    private int mobileNo;
+    private String mobileNo;
 
-    public String getEmail() {
+    public String getMobileNo() {
+		return mobileNo;
+	}
+
+	public void setMobileNo(String mobileNo) {
+		this.mobileNo = mobileNo;
+	}
+
+	public String getEmail() {
         return email;
     }
 
@@ -46,11 +54,12 @@ public class UserBean implements Serializable{
         this.lastName = lastName;
     }
 
-    public int getMobileNo() {
-        return mobileNo;
-    }
+	@Override
+	public String toString() {
+		return "UserBean [email=" + email + ", password=" + password
+				+ ", firstName=" + firstName + ", lastName=" + lastName
+				+ ", mobileNo=" + mobileNo + "]";
+	}
 
-    public void setMobileNo(int mobileNo) {
-        this.mobileNo = mobileNo;
-    }
+    
 }

@@ -15,7 +15,9 @@ import javax.validation.constraints.Size;
 @Inheritance(strategy = InheritanceType.JOINED)
 public class Profile extends BaseEntity {
 
-    @Size(min = 3, max = 128, message = "Minimum 3 characters")
+	private static final long serialVersionUID = -82043897303577504L;
+
+	@Size(min = 3, max = 128, message = "Minimum 3 characters")
     @Column(name = "first_name", columnDefinition = "VARCHAR(128)", nullable = false)
     private String firstName;
 
@@ -25,7 +27,7 @@ public class Profile extends BaseEntity {
 
     @Size(min = 10, max = 10, message = "Required")
     @Column(name = "mobile_no", nullable = false)
-    private int mobileNo;
+    private String mobileNo;
 
     public String getLastName() {
         return lastName;
@@ -43,11 +45,11 @@ public class Profile extends BaseEntity {
         this.firstName = firstName;
     }
 
-    public int getMobileNo() {
+    public String getMobileNo() {
         return mobileNo;
     }
 
-    public void setMobileNo(int mobileNo) {
+    public void setMobileNo(String mobileNo) {
         this.mobileNo = mobileNo;
     }
 }

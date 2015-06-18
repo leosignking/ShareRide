@@ -25,7 +25,11 @@ public class UserDao extends BaseDao {
         create(profile);
     }
 
-    public void updateProfile(Profile profile) {
+    public void saveOrUpdateAccount(Account account) {
+        update(account);
+    }
+    
+    public void saveOrUpdateProfile(Profile profile) {
         update(profile);
     }
 

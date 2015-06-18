@@ -8,14 +8,14 @@
 
 <html>
 <head>
+ 	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <link href="<c:url value="/resources/css/bootstrap.css" />" rel="stylesheet">
     <link href="<c:url value="/resources/css/font-awesome.min.css" />" rel="stylesheet">
-    <script src="<c:url value="/resources/js/bootstrap.min.js" />"></script>
     <script src="<c:url value="/resources/js/index.js" />"></script>
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script src="<c:url value="/resources/js/bootstrap.min.js" />"></script> 
     <title>ShareRide</title>
 </head>
-<script>
+<script type="text/javascript">
 
     $(function() {
 
@@ -34,6 +34,7 @@
 		e.preventDefault();
 	});
 
+	
 });
 
 
@@ -72,16 +73,16 @@
                 <div class="panel-body">
                     <div class="row">
                         <div class="col-lg-8 col-lg-push-2">
-                            <form:form id="login-form" action="/ShareRide/login" method="post" modelAttribute="userBean" role="form"  style="display: block;">
+                            <form:form id="login-form" action="login" method="POST"  modelAttribute="userBean" role="form"  style="display: block;">
                                 <div class="form-group">
-                                <form:label path="email" ></form:label>
                                 <form:input  path="email" name="email" id="email" tabindex="1" 
-                                           placeholder="Username/Email" class="form-control" />
+                                           placeholder="Username/Email" class="form-control"  onblur="validateEmail()"/>
+                                <div id="errorval" style="color: red;"></div>
                                 </div>
                                 <div class="form-group">
-                                <form:label path="password" ></form:label>
                                 <form:password path="password" name="password" id="password" tabindex="2" 
-                                           placeholder="password" class="form-control" />
+                                           placeholder="Password" class="form-control" onblur="passwordValidation()"/>
+                                 <div id="errorvalpaswd" style="color: red;"></div>
                                 </div> 
                                 <div class="form-group">
                                     <label for="remember">
@@ -95,8 +96,8 @@
                                 <div class="form-group">
                                     <div class="row">
                                         <div class="col-sm-6 col-sm-offset-3">
-                                            <input type="submit" name="login-submit" id="login-submit" tabindex="4"
-                                                   class="form-control btn btn-login" value="Log In">
+                                            <input type="button" name="login-submit" id="login-submit" tabindex="4"
+                                                   class="form-control btn btn-login" value="Log In" onclick="saveLogin()">
                                         </div>
                                     </div>
                                 </div>
@@ -112,15 +113,17 @@
                             </form:form>
                         </div>
                         <div class="col-lg-10 col-lg-push-1">
-                            <form id="register-form" action="/sigup" method="post" role="form" style="display: none;">
+                            <form:form id="register-form" action="signup" method="post" modelAttribute="userBean" role="form" style="display: none;">
                                 <div class="row">
-                                    <div class="form-group">
-                                        <input type="email" name="email" id="email" tabindex="1" class="form-control"
-                                               placeholder="Email Address" value="">
+                                    <div class="form-group col-xs-12">
+                               		 <form:input  path="email" name="email" id="emailReg" tabindex="1" 
+                                           placeholder="Username/Email" class="form-control" onblur="validateEmails()"/>
+                                     <div id="errorvals" style="color: red;"></div>
                                     </div>
-                                    <div class="form-group">
-                                        <input type="password" name="password" id="password" tabindex="2"
-                                               class="form-control" placeholder="Password">
+                                    <div class="form-group col-xs-12">
+                                     <form:password path="password" name="password" id="passwordReg" tabindex="2"
+                                               class="form-control" placeholder="Password" onblur="passwordValidations()"/>
+                                     <div id="errorvalpaswds" style="color: red;"></div>
                                     </div>
 
                                     <%--<div class="form-group">
@@ -128,22 +131,25 @@
                                         <input type="text" name="last_name" id="last_name" class="input-lg col-lg-6" placeholder="Last Name" tabindex="4">
                                     </div>--%>
 
-                                    <div class="col-xs-10 col-sm-6 col-md-1">
+                                    <div class="col-xs-10 col-sm-6 col-md-6">
                                         <div class="form-group">
-                                            <input type="text" name="first_name" id="first_name"
-                                                   class="form-control input-lg" placeholder="First Name" tabindex="1">
+                                     	<form:input path="firstName" name="firstName" id="firstName" tabindex="2"
+                                               class="form-control" placeholder="First Name" onblur="firstNameValidation()"/>
+                                        <div id="errorvalfstName" style="color: red;"></div>
                                         </div>
                                     </div>
                                     <div class="col-xs-10 col-sm-6 col-md-6">
                                         <div class="form-group">
-                                            <input type="text" name="last_name" id="last_name"
-                                                   class="form-control input-lg" placeholder="Last Name" tabindex="2">
+                                     	<form:input path="lastName" name="lastName" id="lastName" tabindex="2"
+                                               class="form-control" placeholder="Last Name" onblur="lastNameValidation()"/>
+                                       	<div id="errorvallstName" style="color: red;"></div>
                                         </div>
                                     </div>
-                                    <div class="col-xs-10">
+                                    <div class="col-xs-6">
                                         <div class="form-group">
-                                            <input type="text" class="form-control " data-min="10" data-max="10"
-                                                   data-wrap="true" placeholder="1234567890" tabindex="4">
+                                     	<form:input path="mobileNo" name="mobileNo" id="mobileNo" tabindex="2"
+                                               class="form-control" placeholder="Phone Number" onblur="phoneNoValidation()"/>
+                                        <div id="errorvalPhoneNo" style="color: red;"></div>
                                         </div>
                                     </div>
                                 </div>
@@ -165,7 +171,7 @@
                                         <i class="fa fa-google-plus-square fa-3x"></i>
                                     </a>
                                 </div>
-                            </form>
+                            </form:form>
                         </div>
                     </div>
                 </div>

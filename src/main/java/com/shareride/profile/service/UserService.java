@@ -16,7 +16,7 @@ import org.springframework.transaction.annotation.Transactional;
  */
 
 @Service
-@Transactional(readOnly = true, propagation = Propagation.REQUIRED)
+@Transactional(readOnly = false, propagation = Propagation.REQUIRED)
 public class UserService {
 
     private static final Logger logger = LoggerFactory.getLogger(UserService.class);

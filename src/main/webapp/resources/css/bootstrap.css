@@ -8109,3 +8109,8 @@ button.close {
 }
 
 /*# sourceMappingURL=bootstrap.css.map */
+
+
+
+.flexigrid .pReload.loading{background:url(../images/load.gif) no-repeat center}
+.ui-tabs .ui-tabs-nav li.ui-tabs-active a, .ui-tabs .ui-tabs-nav li.ui-state-disabled a, .ui-tabs .ui-tabs-nav li.ui-tabs-loading a { cursor: text; }
