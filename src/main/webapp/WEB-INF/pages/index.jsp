@@ -9,7 +9,7 @@
 <html>
 <head>
  	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-    <link href="<c:url value="/resources/css/bootstrap.css" />" rel="stylesheet">
+    <link href="<c:url value="/resources/css/bootstraplogin.css" />" rel="stylesheet">
     <link href="<c:url value="/resources/css/font-awesome.min.css" />" rel="stylesheet">
     <script src="<c:url value="/resources/js/index.js" />"></script>
     <script src="<c:url value="/resources/js/bootstrap.min.js" />"></script> 
@@ -75,14 +75,15 @@
                         <div class="col-lg-8 col-lg-push-2">
                             <form:form id="login-form" action="login" method="POST"  modelAttribute="userBean" role="form"  style="display: block;">
                                 <div class="form-group">
+                                <div id="errorValueCN" style="color: red;">${errorValue}</div>
                                 <form:input  path="email" name="email" id="email" tabindex="1" 
-                                           placeholder="Username/Email" class="form-control"  onblur="validateEmail()"/>
-                                <div id="errorval" style="color: red;"></div>
+                                           placeholder="Username/Email" class="form-control" />
+                                <div id="erroremail" style="color: red;"></div>
                                 </div>
                                 <div class="form-group">
                                 <form:password path="password" name="password" id="password" tabindex="2" 
-                                           placeholder="Password" class="form-control" onblur="passwordValidation()"/>
-                                 <div id="errorvalpaswd" style="color: red;"></div>
+                                           placeholder="Password" class="form-control" />
+                                 <div id="errorpaswd" style="color: red;"></div>
                                 </div> 
                                 <div class="form-group">
                                     <label for="remember">
@@ -97,7 +98,7 @@
                                     <div class="row">
                                         <div class="col-sm-6 col-sm-offset-3">
                                             <input type="button" name="login-submit" id="login-submit" tabindex="4"
-                                                   class="form-control btn btn-login" value="Log In" onclick="saveLogin()">
+                                                   class="form-control btn btn-login" value="Log In" >
                                         </div>
                                     </div>
                                 </div>
@@ -116,14 +117,14 @@
                             <form:form id="register-form" action="signup" method="post" modelAttribute="userBean" role="form" style="display: none;">
                                 <div class="row">
                                     <div class="form-group col-xs-12">
-                               		 <form:input  path="email" name="email" id="emailReg" tabindex="1" 
-                                           placeholder="Username/Email" class="form-control" onblur="validateEmails()"/>
-                                     <div id="errorvals" style="color: red;"></div>
+                               		 <form:input  path="email" name="email" id="emailSignup" tabindex="1" 
+                                           placeholder="Username/Email" class="form-control" />
+                                     <div id="errorEmails" style="color: red;"></div>
                                     </div>
                                     <div class="form-group col-xs-12">
-                                     <form:password path="password" name="password" id="passwordReg" tabindex="2"
-                                               class="form-control" placeholder="Password" onblur="passwordValidations()"/>
-                                     <div id="errorvalpaswds" style="color: red;"></div>
+                                     <form:password path="password" name="password" id="passwordSignup" tabindex="2"
+                                               class="form-control" placeholder="Password" />
+                                     <div id="errorPaswds" style="color: red;"></div>
                                     </div>
 
                                     <%--<div class="form-group">
@@ -134,22 +135,22 @@
                                     <div class="col-xs-10 col-sm-6 col-md-6">
                                         <div class="form-group">
                                      	<form:input path="firstName" name="firstName" id="firstName" tabindex="2"
-                                               class="form-control" placeholder="First Name" onblur="firstNameValidation()"/>
-                                        <div id="errorvalfstName" style="color: red;"></div>
+                                               class="form-control" placeholder="First Name" />
+                                        <div id="errorFirstName" style="color: red;"></div>
                                         </div>
                                     </div>
                                     <div class="col-xs-10 col-sm-6 col-md-6">
                                         <div class="form-group">
                                      	<form:input path="lastName" name="lastName" id="lastName" tabindex="2"
-                                               class="form-control" placeholder="Last Name" onblur="lastNameValidation()"/>
-                                       	<div id="errorvallstName" style="color: red;"></div>
+                                               class="form-control" placeholder="Last Name" />
+                                       	<div id="errorLastName" style="color: red;"></div>
                                         </div>
                                     </div>
                                     <div class="col-xs-6">
                                         <div class="form-group">
                                      	<form:input path="mobileNo" name="mobileNo" id="mobileNo" tabindex="2"
                                                class="form-control" placeholder="Phone Number" onblur="phoneNoValidation()"/>
-                                        <div id="errorvalPhoneNo" style="color: red;"></div>
+                                        <div id="errorMobileNo" style="color: red;"></div>
                                         </div>
                                     </div>
                                 </div>

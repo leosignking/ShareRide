@@ -30,6 +30,7 @@ public class SignUpController {
     @RequestMapping(value = "/signup", method = RequestMethod.POST)
     public ModelAndView signup(@ModelAttribute("userBean") UserBean userBean) {
     	ModelAndView model = new ModelAndView();
+    	logger.info("SignupController.indexPage() ");
     	model.setViewName(dashboardViewName);
         userService.createUser(userBean);
         return model;
