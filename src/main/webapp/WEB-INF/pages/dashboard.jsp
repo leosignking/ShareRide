@@ -43,12 +43,12 @@
                     </a>
                 </li>
                 <li>
-                    <a href="#">
+                    <a href="profile">
                         <i class="fa fa-user"> Profile</i>
                     </a>
                 </li>
                 <li>
-                    <a href="#">
+                    <a href="logout">
                         <i class="fa fa-sign-out"> Logout</i>
                     </a>
                 </li>

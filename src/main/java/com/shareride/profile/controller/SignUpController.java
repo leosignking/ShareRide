@@ -20,7 +20,7 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class SignUpController {
 	
-	private static final Logger logger = LoggerFactory.getLogger(SignUpController.class);
+	private static final Logger LOG = LoggerFactory.getLogger(SignUpController.class);
 	
 	private static final String dashboardViewName = "dashboard";
 

@@ -15,7 +15,9 @@ import javax.persistence.*;
 @Inheritance(strategy = InheritanceType.JOINED)
 public class Account extends BaseEntity {
 
-    @Column(name = "email", nullable = false)
+	private static final long serialVersionUID = 7667952751923622483L;
+
+	@Column(name = "email", nullable = false)
     private String email;
 
     @Column(name = "password", nullable = false)

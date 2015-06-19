@@ -19,16 +19,15 @@ import com.shareride.profile.beans.UserBean;
 @Controller
 public class LoginController {
 	
-	private final Log logger = LogFactory.getLog(getClass());
+	private static final Log LOG = LogFactory.getLog(LoginController.class);
 	
     private static final String indexViewName = "index";
-    private static final String signupViewName = "signup";
     private static final String dashboardViewName = "dashboard";
   
 
-    @RequestMapping(value = "/home", method = RequestMethod.GET)
+    @RequestMapping(value = "/", method = RequestMethod.GET)
     public ModelAndView indexPage(ModelAndView model, @ModelAttribute("userBean") UserBean userBean) {
-    	logger.info("LoginController.indexPage() : Redirected to Login page");
+    	LOG.info("LoginController.indexPage() : Redirected to Login page");
         model.setViewName(indexViewName);
         return model;
     }
@@ -36,7 +35,7 @@ public class LoginController {
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     @ResponseBody
     public ModelAndView loginPage(ModelAndView model, @ModelAttribute("userBean") UserBean userBean) {
-        logger.info("LoginController.loginPage() : Redirected to Dashboard page");
+        LOG.info("LoginController.loginPage() : Redirected to Dashboard page");
         model.setViewName(dashboardViewName);
         return model;
     }

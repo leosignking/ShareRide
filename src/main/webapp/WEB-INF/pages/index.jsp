@@ -103,7 +103,7 @@
                                 </div>
                                 <hr>
                                 <div class="text-center">
-                                    <a class="btn" href="javascript:popup_getFacebookConnection()">
+                                    <a class="btn" href="social/facebook/signin">
                                         <i class="fa fa-facebook-square fa-3x"></i>
                                     </a>
                                     <a class="btn" href="javascript:popup_get_Google_Plus_Connection()">
@@ -164,7 +164,7 @@
                                 </div>
                                 <hr>
                                 <div class="text-center">
-                                    <a class="btn" href="javascript:popup_getFacebookConnection()">
+                                    <a class="btn" href="social/facebook/signin">
                                         <i class="fa fa-facebook-square fa-3x"></i>
                                     </a>
                                     <a class="btn" href="javascript:popup_get_Google_Plus_Connection()">
