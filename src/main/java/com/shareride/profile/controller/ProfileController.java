@@ -1,6 +1,5 @@
 package com.shareride.profile.controller;
 
-
 import java.io.IOException;
 
 import javax.servlet.http.HttpServletRequest;
@@ -32,7 +31,7 @@ public class ProfileController {
     
     @Autowired
     private UserService userService;
-
+    
     @RequestMapping(value = "/profile", method= RequestMethod.GET)
     public ModelAndView profilePage(ModelAndView model, @RequestParam("emailId") String emailId) throws IOException{
         logger.info("ProfileController.profilePage() : Redirecting to profile page");

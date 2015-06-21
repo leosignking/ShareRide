@@ -55,9 +55,9 @@ public class BaseDao {
         getEntityManagerForActiveEntities().persist(entity);
     }
 
-    public void createAll(final Collection entities) {
-        for (Object entity : entities) {
-            create((BaseEntity) entity);
+    public void createAll(final Collection<BaseEntity> entities) {
+        for (BaseEntity entity : entities) {
+            create(entity);
         }
     }
 
@@ -108,9 +108,9 @@ public class BaseDao {
         getEntityManagerWithoutFilter().remove(entity);
     }
 
-    public void removeAll(final Collection entities) {
-        for (Object entity : entities) {
-            remove((BaseEntity) entity);
+    public void removeAll(final Collection<BaseEntity> entities) {
+        for (BaseEntity entity : entities) {
+            remove(entity);
         }
     }
 

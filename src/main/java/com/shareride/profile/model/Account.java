@@ -22,7 +22,13 @@ import com.shareride.core.model.BaseEntity;
 @Inheritance(strategy = InheritanceType.JOINED)
 public class Account extends BaseEntity {
 
+<<<<<<< HEAD
     @Column(name = "email", nullable = false, unique= true)
+=======
+	private static final long serialVersionUID = 7667952751923622483L;
+
+	@Column(name = "email", nullable = false)
+>>>>>>> branch 'master' of https://github.com/leosignking/ShareRide.git
     private String email;
 
     @Column(name = "password", nullable = false)

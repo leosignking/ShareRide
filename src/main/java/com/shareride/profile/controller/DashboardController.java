@@ -21,12 +21,17 @@ import com.shareride.profile.beans.UserBean;
 @Controller
 public class DashboardController {
 
+<<<<<<< HEAD
     private static final Logger logger = LoggerFactory.getLogger(DashboardController.class);
     
     private static final String indexViewName = "index";
     private static final String dashboardViewName = "dashboard";
+=======
+    private static final Logger LOG = LoggerFactory.getLogger(DashboardController.class);
+>>>>>>> branch 'master' of https://github.com/leosignking/ShareRide.git
 
     @RequestMapping(value = "/dashboard", method = RequestMethod.GET)
+<<<<<<< HEAD
     public ModelAndView dashboardPage(ModelAndView modelAndView, @ModelAttribute("userBean")UserBean userBean, HttpServletRequest request, HttpServletResponse response ) {
         logger.info("DashboardController.dashboardPage() : Redirecting to dashboard page");
         String emailId = (String) request.getSession().getAttribute("emailId");
@@ -36,6 +41,11 @@ public class DashboardController {
         } else {
         	modelAndView.setViewName(dashboardViewName);
         }
+=======
+    public ModelAndView dashboardPage(ModelAndView modelAndView) {
+        LOG.info("DashboardController.dashboardPage() : Redirecting to dashboard page");
+        modelAndView.setViewName("dashboard");
+>>>>>>> branch 'master' of https://github.com/leosignking/ShareRide.git
         return modelAndView;
     }
 }

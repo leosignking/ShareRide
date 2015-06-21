@@ -23,23 +23,29 @@ import com.shareride.profile.service.UserService;
 @Controller
 public class LoginController {
 	
-	private final Log logger = LogFactory.getLog(getClass());
+	private static final Log LOG = LogFactory.getLog(LoginController.class);
 	
     private static final String indexViewName = "index";
     private static final String dashboardViewName = "dashboard";
   
+<<<<<<< HEAD
     @Autowired
     private UserService userService;
     
     @RequestMapping(value = "/home", method = RequestMethod.GET)
+=======
+
+    @RequestMapping(value = "/", method = RequestMethod.GET)
+>>>>>>> branch 'master' of https://github.com/leosignking/ShareRide.git
     public ModelAndView indexPage(ModelAndView model, @ModelAttribute("userBean") UserBean userBean) {
-    	logger.info("LoginController.indexPage() : Redirected to Login page");
+    	LOG.info("LoginController.indexPage() : Redirected to Login page");
         model.setViewName(indexViewName);
         return model;
     }
 
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     @ResponseBody
+<<<<<<< HEAD
     public ModelAndView loginPage(ModelAndView model, @ModelAttribute("userBean") UserBean userBean, HttpServletRequest request) {
         logger.info("LoginController.loginPage() : Redirected to Dashboard page");
         //create session
@@ -56,6 +62,11 @@ public class LoginController {
         	model.addObject("errorValue",isValidUser);
         	model.setViewName(indexViewName);
         }
+=======
+    public ModelAndView loginPage(ModelAndView model, @ModelAttribute("userBean") UserBean userBean) {
+        LOG.info("LoginController.loginPage() : Redirected to Dashboard page");
+        model.setViewName(dashboardViewName);
+>>>>>>> branch 'master' of https://github.com/leosignking/ShareRide.git
         return model;
     }
 }
