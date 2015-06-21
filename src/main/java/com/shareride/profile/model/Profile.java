@@ -1,9 +1,13 @@
 package com.shareride.profile.model;
 
-import com.shareride.core.model.BaseEntity;
-
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
+import javax.persistence.Table;
 import javax.validation.constraints.Size;
+
+import com.shareride.core.model.BaseEntity;
 
 /**
  * @author sridhar.reddy

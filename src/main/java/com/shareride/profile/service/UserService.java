@@ -2,17 +2,17 @@ package com.shareride.profile.service;
 
 import java.util.List;
 
-import com.shareride.profile.beans.UserBean;
-import com.shareride.profile.dao.UserDao;
-import com.shareride.profile.model.Account;
-import com.shareride.profile.model.Profile;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
+
+import com.shareride.profile.beans.UserBean;
+import com.shareride.profile.dao.UserDao;
+import com.shareride.profile.model.Account;
+import com.shareride.profile.model.Profile;
 
 /**
  * @author sridhar.reddy
@@ -46,32 +46,43 @@ public class UserService {
 
 	public String isUserValid(UserBean userBean) {
 
+		logger.info("control in UserService Layer: isUserValid()");
 		String emailId = userBean.getEmail();
 		String password = userBean.getPassword();
+		logger.info("Before calling to userDao : values are email ID:"+emailId+" and password: "+password);
+		Account account = userDao.getAccountByEmail(emailId);
+		logger.info("After response came from DAO layer ");
 
-		String dbUserEmail = "";
-		String dbUserPassword = "";
-		List<Account> userDetails = userDao.isValidUser(emailId);
-		for (Account user : userDetails) {
-			dbUserEmail = user.getEmail();
-			dbUserPassword = user.getPassword();
-		}
-		if ((dbUserEmail != null && !dbUserEmail.isEmpty())
-				&& (password != null && !password.isEmpty())) {
-			if (emailId.equalsIgnoreCase(dbUserEmail)
-					&& (password.equalsIgnoreCase(dbUserPassword))) {
+		if(account != null){
+			if (emailId.equalsIgnoreCase(account.getEmail())
+					&& (password.equalsIgnoreCase(account.getPassword()))) {
 				return "validUser";
-			} else if (emailId.equalsIgnoreCase(dbUserEmail)
-					&& (!password.equalsIgnoreCase(dbUserPassword))) {
+			} else if (emailId.equalsIgnoreCase(account.getEmail())
+					&& (!password.equalsIgnoreCase(account.getPassword()))) {
 				return "Please check the password";
-			} else if (!emailId.equalsIgnoreCase(dbUserEmail)) {
-				return "Please check th email you entered";
-			}
-		}else {
-			
-			return "error";
+			} 
+		}else{
+			return"The Email Id You entered is not registred";
 		}
 		return "error";
+	}
+
+	public UserBean getUserDetailsByEmail(String emailId){
+
+		logger.info("control in UserService Layer: getUserDetailsByEmail()");
+		logger.info("Before calling to userDao : values are email ID:"+emailId);
+		Account account = userDao.getAccountByEmail(emailId);
+		
+		UserBean userDetails = new UserBean();
+	
+		logger.info("After response came from DAO layer ");
+
+
+		return userDetails;
+
 
 	}
+
+
+
 }

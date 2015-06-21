@@ -1,19 +1,20 @@
 package com.shareride.profile.dao;
 
-import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Repository;
+
 import com.shareride.core.dao.BaseDao;
+import com.shareride.profile.beans.UserBean;
 import com.shareride.profile.model.Account;
 import com.shareride.profile.model.Profile;
-
-import org.springframework.stereotype.Repository;
-import org.springframework.transaction.annotation.Transactional;
+import com.shareride.profile.service.UserService;
 
 /**
  * @author sridhar.reddy
@@ -21,6 +22,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 @Repository("userDao")
 public class UserDao extends BaseDao {
+	
+	private static final Logger logger = LoggerFactory.getLogger(UserService.class);
 	
 	@PersistenceContext
     private EntityManager entityManager;
@@ -45,23 +48,26 @@ public class UserDao extends BaseDao {
     public void saveOrUpdateProfile(Profile profile) {
         update(profile);
     }
-  /*  @Transactional(readOnly=true)
-    public List<Profile> getAccountByEmail(String email){
-    	String hql = "FROM Profile";
-    	Query query =  entityManager.createQuery(hql);
-    	List<Profile> userDetails = (ArrayList<Profile>)query.getResultList();
-    	return userDetails;
-    }*/
-    
-    public List<Account> isValidUser(String emailId){
-    	
-    	String hql = "from account email = :email";
-    	Query query =  entityManager.createQuery(hql);
-    	query.setParameter("email", emailId);
-    	List<Account> accountDetails =  query.getResultList();
-    	
-		return accountDetails;
+
+/*    public Account getByEmail(String email){
+    	logger.info("control in UserDao Layer: getAccountByEmail()");
+    	Account account = getAccountByEmail(email);
+		return account;
     	
     }
+    public Account isValidUser(String emailId){
+    	logger.info("control in UserDao Layer: isValidUser()");
+    	return getAccountByEmail(emailId);
+    }
+    */
+    public Account getAccountByEmail(String emailId){
+    	logger.info("control in UserDao Layer: getAccountDetailsByEmail()");
+    	String hql = "from Account where email = :email";
+    	Query query =  entityManager.createQuery(hql);
+    	query.setParameter("email", emailId);
+    	logger.info("Before executing the query: "+query);
+    	return (Account) query.getResultList().get(0);
+    }
+    
 
 }

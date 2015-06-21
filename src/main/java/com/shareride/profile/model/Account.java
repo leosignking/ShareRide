@@ -1,9 +1,16 @@
 package com.shareride.profile.model;
 
-import com.shareride.core.model.BaseEntity;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
+
 import org.springframework.context.annotation.Configuration;
 
-import javax.persistence.*;
+import com.shareride.core.model.BaseEntity;
 
 /**
  * @author sridhar.reddy
@@ -15,7 +22,7 @@ import javax.persistence.*;
 @Inheritance(strategy = InheritanceType.JOINED)
 public class Account extends BaseEntity {
 
-    @Column(name = "email", nullable = false)
+    @Column(name = "email", nullable = false, unique= true)
     private String email;
 
     @Column(name = "password", nullable = false)

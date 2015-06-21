@@ -42,9 +42,11 @@ public class LoginController {
     @ResponseBody
     public ModelAndView loginPage(ModelAndView model, @ModelAttribute("userBean") UserBean userBean, HttpServletRequest request) {
         logger.info("LoginController.loginPage() : Redirected to Dashboard page");
-        //validate user
         //create session
+        logger.info(" Before calling to service layer : passing userBean");
+        logger.info("passing userBean with email Value: "+userBean.getEmail());
         String isValidUser = userService.isUserValid(userBean);
+        logger.info(" Response came from service layer : Response is "+isValidUser);
         
         if(isValidUser.equalsIgnoreCase("validUser")){
         	request.getSession().setAttribute("emailId", userBean.getEmail());

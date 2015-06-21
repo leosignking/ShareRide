@@ -111,15 +111,23 @@
             <table style="width: 70%;">
             <tbody>
              	 <form:form id="profile-form" action="signup" method="post" modelAttribute="userBean" role="form" style="display: none;">
+             	 	
              	 	 <tr style="width:100%">
 	             	 	 <td style="width: 45%;">
 		             	 	 <div class="form-group col-xs-13">
 		             	 	 	 <form:label path="firstName" class="form-label" >First Name</form:label>
 		             	 	 	  <div style="clear: both; height: 10px; width: 10px;"></div>
-		                         <form:input path="firstName" name="firstName" id="firstName" tabindex="2"
+		             	 	 	  <c:choose>
+		             	 	 	  		<c:when test="${!empty userValues.firstName}">
+		             	 	 	  			 <form:input path="firstName" name="firstName" id="firstName" tabindex="2"
+		                                               class="form-control"  value="${userValues.firstName}" />
+		             	 	 	  		</c:when>
+		             	 	 	  		<c:otherwise>
+		             	 	 	  			 <form:input path="firstName" name="firstName" id="firstName" tabindex="2"
 		                                               class="form-control" placeholder="First Name" />
-		                                        <div id="errorFirstName" style="color: red;"></div>
-		                        
+		             	 	 	  		</c:otherwise>
+		             	 	 	  </c:choose>
+		             	 	 	  <div id="errorFirstName" style="color: red;"></div>
 		                     </div>
 	                     
 	                     </td>
@@ -127,11 +135,19 @@
 	                     </td>
 	                      <td style="width: 45%;">
 		             	 	 <div class="form-group col-xs-13">
-		             	 	 	  &nbsp;<form:label path="lastName" class="form-label" >Last Name</form:label>
+		             	 	 	  <form:label path="lastName" class="form-label" >Last Name</form:label>
 		             	 	 	  <div style="clear: both; height: 10px; width: 10px;"></div>
-		                         <form:input path="lastName" name="lastName" id="lastName" tabindex="2"
+		             	 	 	    <c:choose>
+		             	 	 	  		<c:when test="${!empty userValues.lastName}">
+		             	 	 	  			  <form:input path="lastName" name="lastName" id="lastName" tabindex="2"
+		                                               class="form-control"  value="${userValues.lastName}"/>
+		             	 	 	  		</c:when>
+		             	 	 	  		<c:otherwise>
+		             	 	 	  			  <form:input path="lastName" name="lastName" id="lastName" tabindex="2"
 		                                               class="form-control" placeholder="Last Name" />
-		                                        <div id="errorFirstName" style="color: red;"></div>
+		             	 	 	  		</c:otherwise>
+		             	 	 	  </c:choose>
+		                        <div id="errorFirstName" style="color: red;"></div>
 		                        
 		                     </div>
 		                     
@@ -141,10 +157,18 @@
                       <tr style="width: 65%;">
 	             	 	 <td>
 		             	 	 <div class="form-group col-xs-13">
-		             	 	 	  &nbsp;<form:label path="email" class="form-label" >Email Address</form:label>
+		             	 	 	  <form:label path="email" class="form-label" >Email Address</form:label>
 		             	 	 	  <div style="clear: both; height: 10px; width: 10px;"></div>
-		                         <form:input path="email" name="email" id="email" tabindex="2"
+		             	 	 	  <c:choose>
+		             	 	 	  		<c:when test="${!empty userValues.email}">
+		             	 	 	  			   <form:input path="email" name="email" id="email" tabindex="2"
+		                                               class="form-control" value="${userValues.email}" />
+		             	 	 	  		</c:when>
+		             	 	 	  		<c:otherwise>
+		             	 	 	  			   <form:input path="email" name="email" id="email" tabindex="2"
 		                                               class="form-control" placeholder="Email/User Name" />
+		             	 	 	  		</c:otherwise>
+		             	 	 	  </c:choose>
 		                         <div id="errorFirstName" style="color: red;"></div>
 		                     </div>
 	                     </td>
@@ -152,10 +176,18 @@
 	                     </td>
 	                     <td>
 		             	 	 <div class="form-group col-xs-13">
-		             	 	 	  &nbsp;<form:label path="password" class="form-label" >Password</form:label>
+		             	 	 	  <form:label path="password" class="form-label" >Password</form:label>
 		             	 	 	  <div style="clear: both; height: 10px; width: 10px;"></div>
-		                         <form:password path="password" name="password" id="password" tabindex="2"
+		             	 	 	    <c:choose>
+		             	 	 	  		<c:when test="${!empty userValues.password}">
+		             	 	 	  			  <form:password path="password" name="password" id="password" tabindex="2"
+		                                               class="form-control" value="${userValues.password}"/>
+		             	 	 	  		</c:when>
+		             	 	 	  		<c:otherwise>
+		             	 	 	  			   <form:password path="password" name="password" id="password" tabindex="2"
 		                                               class="form-control" placeholder="password" />
+		             	 	 	  		</c:otherwise>
+		             	 	 	  </c:choose>
 		                         <div id="errorFirstName" style="color: red;"></div>
 		                     </div>
 	                     </td>
@@ -165,8 +197,16 @@
                      		<div class="form-group col-xs-13">
 		             	 	 	  &nbsp;<form:label path="mobileNo" class="form-label" >Phone Number</form:label>
 		             	 	 	  <div style="clear: both; height: 10px; width: 10px;"></div>
-		                         <form:input path="mobileNo" name="mobileNo" id="mobileNo" tabindex="2"
+		             	 	 	   <c:choose>
+		             	 	 	  		<c:when test="${!empty userValues.mobileNo}">
+		             	 	 	  			     <form:input path="mobileNo" name="mobileNo" id="mobileNo" tabindex="2"
+		                                               class="form-control"  value="${userValues.mobileNo}"/>
+		             	 	 	  		</c:when>
+		             	 	 	  		<c:otherwise>
+		             	 	 	  			      <form:input path="mobileNo" name="mobileNo" id="mobileNo" tabindex="2"
 		                                               class="form-control" placeholder="mobileNo" />
+		             	 	 	  		</c:otherwise>
+		             	 	 	  </c:choose>
 		                         <div id="errorFirstName" style="color: red;"></div>
 		                     </div>
                      	</td>

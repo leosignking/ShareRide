@@ -18,7 +18,6 @@
     <link href="<c:url value="/resources/css/dashboard.css" />" rel="stylesheet">
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
    <%--  <script src="<c:url value="/resources/js/bootstrap.min.js" />"></script> --%>
-    
   
     <title>ShareRide</title>
 <script>
@@ -58,7 +57,7 @@ $(function(){
                     </a>
                 </li>
                 <li>
-                    <a href="profile" >
+                    <a href="profile?emailId=<c:out value="${emailIdProfile}"/>">
                     	<%
                     		if (emailId != null && !emailId.isEmpty()) {
 						%>

@@ -3,15 +3,23 @@
  */
 package com.shareride.core.model;
 
+import java.io.Serializable;
+import java.util.Calendar;
+import java.util.Date;
+
+import javax.persistence.Column;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.MappedSuperclass;
+import javax.persistence.PrePersist;
+import javax.persistence.PreUpdate;
+import javax.persistence.Version;
+
 import org.hibernate.annotations.Filter;
 import org.hibernate.annotations.FilterDef;
 import org.hibernate.annotations.Filters;
 import org.hibernate.annotations.ParamDef;
-
-import javax.persistence.*;
-import java.io.Serializable;
-import java.util.Calendar;
-import java.util.Date;
 
 /**
  * @author sridhar.reddy

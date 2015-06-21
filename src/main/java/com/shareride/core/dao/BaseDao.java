@@ -3,17 +3,19 @@
  */
 package com.shareride.core.dao;
 
-import com.shareride.core.model.BaseEntity;
+import java.util.Collection;
+import java.util.List;
+
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+
 import org.hibernate.Session;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-import java.util.Collection;
-import java.util.List;
+import com.shareride.core.model.BaseEntity;
 
 /**
  * @author sridhar.reddy
