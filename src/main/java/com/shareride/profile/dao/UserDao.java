@@ -1,7 +1,5 @@
 package com.shareride.profile.dao;
 
-import java.util.List;
-
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
@@ -11,7 +9,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
 
 import com.shareride.core.dao.BaseDao;
-import com.shareride.profile.beans.UserBean;
 import com.shareride.profile.model.Account;
 import com.shareride.profile.model.Profile;
 import com.shareride.profile.service.UserService;
